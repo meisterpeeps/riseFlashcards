@@ -1,0 +1,357 @@
+html {
+	font-size: 62.5%;
+}
+
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Lato Light"), local("Lato-Light"), url(./fonts/Lato-Light.woff) format("woff");
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Lato Regular"), local("Lato-Regular"), url(./fonts/Lato-Regular.woff) format("woff");
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Lato Bold"), local("Lato-Bold"), url(./fonts/Lato-Bold.woff) format("woff");
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 900;
+	src: local("Lato Black"), local("Lato-Black"), url(./fonts/Lato-Black.woff) format("woff");
+}
+@font-face {
+	font-family: "Lato";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Lato Light"), local("Lato-Light"), url(./fonts/Lato-Light.woff) format("woff");
+}
+@font-face {
+	font-family: "Lato";
+	font-style: italic;
+	font-weight: 400;
+	src: local("Lato Italic"), local("Lato-Italic"), url(./fonts/Lato-Italic.woff) format("woff");
+}
+@font-face {
+	font-family: "Merriweather";
+	font-style: normal;
+	font-weight: 300;
+	src: local("Merriweather Light"), local("Merriweather-Light"),
+		url(./fonts/Merriweather-Light.woff) format("woff");
+}
+@font-face {
+	font-family: "Merriweather";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Merriweather"), local("Merriweather-Regular"),
+		url(./fonts/Merriweather-Regular.woff) format("woff");
+}
+@font-face {
+	font-family: "Merriweather";
+	font-style: normal;
+	font-weight: 700;
+	src: local("Merriweather Bold"), local("Merriweather-Bold"),
+		url(./fonts/Merriweather-Bold.woff) format("woff");
+}
+@font-face {
+	font-family: "Merriweather";
+	font-style: normal;
+	font-weight: 900;
+	src: local("Merriweather Black"), local("Merriweather-Black"),
+		url(./fonts/Merriweather-Black.woff) format("woff");
+}
+
+@font-face {
+	font-family: "Merriweather";
+	font-style: italic;
+	font-weight: 400;
+	src: local("Merriweather Italic"), local("Merriweather-Italic"),
+		url(./fonts/Merriweather-Italic.woff) format("woff");
+}
+
+.brand-font {
+	font-family: Lato !important;
+}
+
+.brand-border {
+	border-color: #747a7e !important;
+}
+
+.flashcards-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	box-sizing: content-box;
+	margin-top: 40px;
+	margin-bottom: 40px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	max-width: 102rem;
+	min-height: 57.3rem;
+	text-align: center;
+}
+
+@media (min-width: 33.75em) {
+	.flashcards-wrapper {
+		padding-left: 3rem;
+		padding-right: 3rem;
+	}
+}
+
+@media (min-width: 60em) {
+	.flashcards-wrapper {
+		padding-left: 6rem;
+		padding-right: 6rem;
+	}
+}
+
+.flashcard {
+	position: relative;
+	width: 100%;
+	min-width: 280px;
+	max-width: 460px;
+	min-height: 280px;
+	max-height: 460px;
+	box-sizing: border-box;
+	transition: transform 0.5s cubic-bezier(0.6, 0, 0.4, 1);
+	perspective: 1000px;
+	transform: scale(0.9) translateZ(0);
+	cursor: pointer;
+}
+
+.flashcard-small {
+	max-width: 280px;
+	max-height: 280px;
+}
+
+.flashcard-flipped {
+	transform: scale(1) translateZ(0);
+	z-index: 1;
+}
+
+.flashcard-front {
+	top: 0;
+	bottom: 0;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+	box-shadow: 0 0.4rem 1.2rem 0.2rem rgb(0 0 0 / 5%);
+	border: 1px solid #ddd;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	will-change: transform;
+}
+
+.flashcard-front {
+	border-top: none;
+	transform: rotateY(0deg);
+	transition: transform 0.6s, z-index 0.6s, left 0.45s, opacity 0.1s linear 0ms;
+}
+
+.flashcard-flipped .flashcard-front {
+	opacity: 0;
+	transform: rotateY(-180deg);
+	transition: transform 0.6s, z-index 0.6s, left 0.45s, opacity 0.1s linear 0.1s;
+}
+
+.flashcard-front .flashcard-content {
+	border-top: 3px solid #eee;
+}
+
+.flashcard-back {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 50;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	overflow: hidden;
+	box-shadow: 0 0.4rem 1.2rem 0.2rem rgb(0 0 0 / 5%);
+	border: 1px solid #ddd;
+	-webkit-backface-visibility: hidden;
+	backface-visibility: hidden;
+	will-change: transform;
+}
+
+.flashcard-back {
+	background-color: #fafafa;
+	opacity: 0;
+	transform: rotateY(180deg);
+	transition: transform 0.6s, z-index 0.6s, left 0.45s, opacity 0.1s linear 0.5s;
+	z-index: 1;
+}
+
+.flashcard-flipped .flashcard-back {
+	opacity: 1;
+	transform: rotateY(0deg);
+	transition: transform 0.6s, z-index 0.6s, left 0.45s, opacity 0.1s linear 0ms;
+	z-index: 100;
+}
+
+.flashcard-content {
+	display: flex;
+	height: 100%;
+	position: relative;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.flashcard-center {
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	margin: 6.8rem 4rem 7rem;
+	width: 100%;
+}
+
+.flashcard-small .flashcard-center {
+	margin: 5.5rem 2.5rem 5.7rem;
+}
+
+.flashcard-small .flashcard-center::after {
+	height: 10rem;
+}
+
+.flashcard-center-scroll::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 1.8rem;
+	right: 1.8rem;
+	background: linear-gradient(hsla(0, 0%, 98%, 0), #fafafa 75%, #fafafa) 0 0 repeat;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity 0.3s;
+	transform: translateZ(0);
+}
+
+.flashcard-center-scroll {
+	overflow: hidden;
+	overflow-y: auto;
+}
+
+.flashcard-center-scroll.flashcard-center-overflow::after {
+	opacity: 1;
+}
+
+.flashcard-small .flashcard-center-scroll {
+	margin: 2rem 0;
+	padding: 0 4rem;
+}
+
+@media (min-width: 30em) {
+	.flashcard-small .flashcard-center-scroll {
+		margin: 2.5rem 0;
+		padding: 0 2.5rem;
+	}
+}
+
+.flashcard-description {
+	flex: 0 1 auto;
+	margin: auto 0;
+	width: 100%;
+	font-size: 2.9rem;
+	font-weight: 300;
+	color: #313537;
+	line-height: 1.25;
+	text-align: center;
+	word-break: break-word;
+}
+
+@media (max-width: 29.9375em) {
+	.flashcard-description {
+		font-size: 2.4rem;
+	}
+}
+
+.flashcard-text {
+	word-wrap: break-word;
+}
+
+.flashcard:hover .flashcard-text {
+	color: #707070;
+}
+
+.flashcard-scroll {
+	flex: 0 1 auto;
+	margin: auto 0;
+	text-align: left;
+	line-height: 1.5625;
+	font-size: 2rem;
+	word-wrap: break-word;
+	width: 100%;
+}
+
+.flashcard:hover .flashcard-scroll {
+	color: #707070;
+}
+
+.flashcard-image {
+	background-size: cover;
+	background-position: 50% 50%;
+	border: 1px solid #ddd !important;
+}
+
+.flashcard-flip {
+	align-items: flex-end;
+	background-color: transparent;
+	border: none;
+	bottom: 0;
+	color: #707070;
+	cursor: pointer;
+	display: flex;
+	line-height: 1;
+	padding: 1.25rem;
+	position: absolute;
+	right: 0;
+	text-decoration: none;
+	transform: translateZ(0);
+}
+
+.flashcard-flip span {
+	display: inline-block;
+	height: 17px;
+	line-height: 17px;
+	transform: translateZ(0);
+}
+
+.flip-text {
+	font-size: 1.2rem;
+	font-style: italic;
+	letter-spacing: 0.005em;
+	margin-right: 6px;
+	transform: translateZ(0);
+}
+
+.flashcard-front:hover .flip-text {
+	color: #313537;
+}
+
+.flip-svg {
+	fill: #707070;
+	filter: none;
+}
+
+.flashcard-front:hover .flip-svg {
+	fill: #313537;
+}
+
+.flashcard-back:hover .flip-svg {
+	fill: #313537;
+}
+
+.flashcard-background-image .flip-svg {
+	fill: #fff;
+	filter: drop-shadow(0 0 2px rgba(0, 0, 0, 0.7));
+}
